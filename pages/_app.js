@@ -1,7 +1,17 @@
-import '../styles/globals.css'
+import "../styles/globals.css";
+import { WagmiConfig, createClient } from "wagmi";
+import { getDefaultProvider } from "ethers";
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  const client = createClient({
+    persister: null,
+    provider: getDefaultProvider(),
+  });
+  return (
+    <WagmiConfig client={client}>
+      <Component {...pageProps} />
+    </WagmiConfig>
+  );
 }
 
-export default MyApp
+export default MyApp;
